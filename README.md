@@ -19,5 +19,5 @@ Open the cge_server.py with a a text editor and change the database directories 
 Place the script in the directory and in the same root create a subdirectory called "input".
 Place the files to be analyzed inside the "input" directory.
 <br />
-<img src="https://user-images.githubusercontent.com/96196923/146848038-7d549c37-1b27-4917-a2ea-fcc51e3556ce.png" width="300">
-<img src="https://user-images.githubusercontent.com/96196923/146848056-1bdb6ea6-fd3a-4544-b037-bf4dfe16255e.png" width="300">
+<img src="https://user-images.githubusercontent.com/96196923/146848038-7d549c37-1b27-4917-a2ea-fcc51e3556ce.png" width="600">
+<img src="https://user-images.githubusercontent.com/96196923/146848056-1bdb6ea6-fd3a-4544-b037-bf4dfe16255e.png" width="600">
