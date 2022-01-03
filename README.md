@@ -15,6 +15,8 @@ There are plans to add more programs and functionality.
 * cgMLSTFinder: https://bitbucket.org/genomicepidemiology/cgmlstfinder/src/master/
 
 ## Setup
+Download and install each of the above programs.
+
 Open the cge_server.py with a a text editor and change the database directories of each program at the top of the script so they reflect the location on your computer.
 ```
 virulencefinder_db = '/path/to/dir/CGE_server/virulencefinder/virulencefinder_db'
