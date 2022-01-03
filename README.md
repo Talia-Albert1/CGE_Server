@@ -27,7 +27,7 @@ cgmlst_db = '/path/to/dir/CGE_server/cgmlstfinder/cgmlstfinder_db'
 ```
 (Note: The resfider program only links to the directory where run_resfinder.py exists)
 
-Place the script in a directory (path/to/dir/cge_server.py)create a subdirectory called "input" (/path/to/dir/input/).
+Place the script in a directory (path/to/dir/cge_server.py) create a subdirectory called "input" (/path/to/dir/input/).
 Place the files to be analyzed inside the "input" subdirectory.
 <br />
 <img src="https://user-images.githubusercontent.com/96196923/146848038-7d549c37-1b27-4917-a2ea-fcc51e3556ce.png" width="450">
