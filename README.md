@@ -39,3 +39,12 @@ Then execute the script by entering the following command
 ```
 python cge_server.py
 ```
+The program will show which files will be analyzed
+```
+The following files will be analyzed
+/path/to/dir/input/Salm_001_R1.fastq.gz
+/path/to/dir/input/Salm_002_R1.fastq.gz
+/path/to/dir/input/Salm_001_R2.fastq.gz
+/path/to/dir/input/Salm_002_R2.fastq.gz
+```
+
