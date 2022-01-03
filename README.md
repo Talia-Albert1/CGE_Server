@@ -15,7 +15,7 @@ There are plans to add more programs and functionality.
 * cgMLSTFinder: https://bitbucket.org/genomicepidemiology/cgmlstfinder/src/master/
 
 ## How to Use
-Open the cge_server.py with a a text editor and change the database directories of each program at the top of the script (lines 15 - 21) so they reflect the location on your computer.
+Open the cge_server.py with a a text editor and change the database directories of each program at the top of the script so they reflect the location on your computer.
 ```
 virulencefinder_db = '/path/to/dir/CGE_server/virulencefinder/virulencefinder_db'
 resfinder_db = '/path/to/dir/CGE_server/resfinder/'
@@ -25,6 +25,7 @@ plasmidfinder_db = '/path/to/dir/CGE_server/plasmidfinder/plasmidfinder_db'
 kmerfinder_db = '/path/to/dir/CGE_server/kmerfinder/kmerfinder_db'
 cgmlst_db = '/path/to/dir/CGE_server/cgmlstfinder/cgmlstfinder_db'
 ```
+(Note: The resfider program only links to the directory where run_resfinder.py exists)
 Place the script in a directory (path/to/dir/cge_server.py)create a subdirectory called "input" (/path/to/dir/input/).
 Place the files to be analyzed inside the "input" subdirectory.
 <br />
