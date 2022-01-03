@@ -16,6 +16,15 @@ There are plans to add more programs and functionality.
 
 ## How to Use
 Open the cge_server.py with a a text editor and change the database directories of each program at the top of the script (lines 15 - 21) so they reflect the location on your computer.
+"""
+virulencefinder_db = '/path/to/dir/CGE_server/virulencefinder/virulencefinder_db'
+resfinder_db = '/path/to/dir/CGE_server/resfinder/'
+mlst_db = '/path/to/dir/CGE_server/mlst/mlst_db'
+serotypefinder_db = '/path/to/dir/CGE_server/serotypefinder/serotypefinder_db'
+plasmidfinder_db = '/path/to/dir/CGE_server/plasmidfinder/plasmidfinder_db'
+kmerfinder_db = '/path/to/dir/CGE_server/kmerfinder/kmerfinder_db'
+cgmlst_db = '/path/to/dir/CGE_server/cgmlstfinder/cgmlstfinder_db'
+"""
 Place the script in a directory (path/to/dir/cge_server.py)create a subdirectory called "input" (/path/to/dir/input/).
 Place the files to be analyzed inside the "input" subdirectory.
 <br />
