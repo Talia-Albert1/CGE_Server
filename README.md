@@ -19,13 +19,13 @@ Download and install each of the above programs.
 
 Open cge_server.py with a a text editor and change the database directories of each program at the top of the script so they reflect the location on your computer.
 ```
-virulencefinder_db = '/path/to/dir/CGE_server/virulencefinder/virulencefinder_db'
-resfinder_db = '/path/to/dir/CGE_server/resfinder/'
-mlst_db = '/path/to/dir/CGE_server/mlst/mlst_db'
-serotypefinder_db = '/path/to/dir/CGE_server/serotypefinder/serotypefinder_db'
-plasmidfinder_db = '/path/to/dir/CGE_server/plasmidfinder/plasmidfinder_db'
-kmerfinder_db = '/path/to/dir/CGE_server/kmerfinder/kmerfinder_db'
-cgmlst_db = '/path/to/dir/CGE_server/cgmlstfinder/cgmlstfinder_db'
+virulencefinder_db = '/path/to/program/CGE_server/virulencefinder/virulencefinder_db'
+resfinder_db = '/path/to/program/CGE_server/resfinder/'
+mlst_db = '/path/to/program/CGE_server/mlst/mlst_db'
+serotypefinder_db = '/path/to/program/CGE_server/serotypefinder/serotypefinder_db'
+plasmidfinder_db = '/path/to/program/CGE_server/plasmidfinder/plasmidfinder_db'
+kmerfinder_db = '/path/to/program/CGE_server/kmerfinder/kmerfinder_db'
+cgmlst_db = '/path/to/program/CGE_server/cgmlstfinder/cgmlstfinder_db'
 ```
 (Note: The resfider program only links to the directory where run_resfinder.py exists)
 
@@ -52,3 +52,20 @@ The following files will be analyzed
 Then the species name(s) must be entered for the cgmlstfinder, mlst, and pointfinder databases. The database directories for the respective programs can be checked to determine which program name to use.
 
 (Note: Multiple files may be analyzed at the same time, but all the files must be of the same species)
+```
+Input the pointfinder database species name:salmonella
+Input the mlst and cgmlstfnder database species name:senterica
+```
+Then programs can be choosen
+```
+Choose which CGE program(s) you would like to analyze the files with, you can enter one program at a time, or enter 7 to use them all. When entering one at a time, enter "N" or "n" when finished entering programs:
+0. VirulenceFinder
+1. ResFinder
+2. MLST
+3. SerotypeFinder
+4. PlasmidFinder
+5. KmerFinder
+6. cgMLSTFinder
+7. All
+Select programs here:
+```
