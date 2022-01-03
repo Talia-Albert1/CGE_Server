@@ -26,6 +26,7 @@ kmerfinder_db = '/path/to/dir/CGE_server/kmerfinder/kmerfinder_db'
 cgmlst_db = '/path/to/dir/CGE_server/cgmlstfinder/cgmlstfinder_db'
 ```
 (Note: The resfider program only links to the directory where run_resfinder.py exists)
+
 Place the script in a directory (path/to/dir/cge_server.py)create a subdirectory called "input" (/path/to/dir/input/).
 Place the files to be analyzed inside the "input" subdirectory.
 <br />
