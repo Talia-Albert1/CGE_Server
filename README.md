@@ -14,7 +14,7 @@ There are plans to add more programs and functionality.
 * KmerFinder: https://bitbucket.org/genomicepidemiology/kmerfinder/src/master/
 * cgMLSTFinder: https://bitbucket.org/genomicepidemiology/cgmlstfinder/src/master/
 
-## How to Use
+## Setup
 Open the cge_server.py with a a text editor and change the database directories of each program at the top of the script so they reflect the location on your computer.
 ```
 virulencefinder_db = '/path/to/dir/CGE_server/virulencefinder/virulencefinder_db'
@@ -32,3 +32,10 @@ Place the files to be analyzed inside the "input" subdirectory.
 <br />
 <img src="https://user-images.githubusercontent.com/96196923/146848038-7d549c37-1b27-4917-a2ea-fcc51e3556ce.png" width="450">
 <img src="https://user-images.githubusercontent.com/96196923/146848056-1bdb6ea6-fd3a-4544-b037-bf4dfe16255e.png" width="450">
+
+## How to Use
+Open the terminal and navigate to the directory with cge_server.py.
+Then execute the script by entering the following command
+```
+python cge_server.py
+```
