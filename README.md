@@ -69,3 +69,17 @@ Choose which CGE program(s) you would like to analyze the files with, you can en
 7. All
 Select programs here:
 ```
+After choosing which programs to use, the script will begin executing the programs and will indicate which programs and files are being used.
+```
+Select programs here:0
+VirulenceFinder will analyze the data
+
+Select programs here:1
+ResFinder will analyze the data
+
+Select programs here:n
+The following programs will analyze the data:
+VirulenceFinder, ResFinder
+```
+After the programs are done being executed, the outputs will be put into an output subdirectory (/path/to/dir/output/programname/filename/results)
+
