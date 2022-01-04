@@ -32,10 +32,9 @@ cgmlst_db = '/path/to/program/CGE_server/cgmlstfinder/cgmlstfinder_db'
 Place the script in a directory (path/to/dir/cge_server.py) create a subdirectory called "input" (/path/to/dir/input/).
 Place the files to be analyzed inside the "input" subdirectory (/path/to/dir/input/file1_r1.fastq.gz etc.)
 
-<p float = "left">
 <img src="https://user-images.githubusercontent.com/96196923/146848038-7d549c37-1b27-4917-a2ea-fcc51e3556ce.png" width="475">
 <img src="https://user-images.githubusercontent.com/96196923/146848056-1bdb6ea6-fd3a-4544-b037-bf4dfe16255e.png" width="475">
-</p>
+
 
 ## How to Use
 Open the terminal and navigate to the directory with cge_server.py.
@@ -86,11 +85,8 @@ VirulenceFinder, ResFinder
 After the programs are done being executed, the outputs will be put into an "output" subdirectory (/path/to/dir/output/programname/filename/results).
 The files analyzed will be moved into an "archive" subdirectory (/path/to/dir/archive/file1_r1.fastq.gz etc.).
 
-<p float = "left">
 <img src=https://user-images.githubusercontent.com/96196923/147994213-8e4ab893-f270-497e-bcbb-f49fa71d0044.png width = "475">
 <img src=https://user-images.githubusercontent.com/96196923/147994384-beb63c00-e474-42e8-9740-940b1924c5b7.png width = "475">
-</p>
-<p float = "left">
 <img src=https://user-images.githubusercontent.com/96196923/147994480-c8652e3f-0cd8-461e-bb9a-6099cab9d13c.png width = "475">
 <img src=https://user-images.githubusercontent.com/96196923/147994507-21f6f818-14d5-4420-8eb7-36612cfa5d22.png width = "475">
-</p>
+
