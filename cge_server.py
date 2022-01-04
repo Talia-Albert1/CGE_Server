@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Dec  2 17:40:00 2021
-
 @author: Kyle Albert
 email: kea5359@psu.edu
 github: CGEServerADL 
