@@ -84,6 +84,8 @@ VirulenceFinder, ResFinder
 After the programs are done being executed, the outputs will be put into an "output" subdirectory (/path/to/dir/output/programname/filename/results).
 The files analyzed will be moved into an "archive" subdirectory (/path/to/dir/archive/).
 
-<img src=https://user-images.githubusercontent.com/96196923/147994213-8e4ab893-f270-497e-bcbb-f49fa71d0044.png width = 475>
-<img src=https://user-images.githubusercontent.com/96196923/147994384-beb63c00-e474-42e8-9740-940b1924c5b7.png width = 475>
+<img src=https://user-images.githubusercontent.com/96196923/147994213-8e4ab893-f270-497e-bcbb-f49fa71d0044.png width = 450>
+<img src=https://user-images.githubusercontent.com/96196923/147994384-beb63c00-e474-42e8-9740-940b1924c5b7.png width = 450>
+<img src=https://user-images.githubusercontent.com/96196923/147994480-c8652e3f-0cd8-461e-bb9a-6099cab9d13c.png width = 450>
+<img src=https://user-images.githubusercontent.com/96196923/147994507-21f6f818-14d5-4420-8eb7-36612cfa5d22.png width = 450>
 
