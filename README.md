@@ -49,7 +49,7 @@ The following files will be analyzed
 /path/to/dir/input/Salm_001_R2.fastq.gz
 /path/to/dir/input/Salm_002_R2.fastq.gz
 ```
-Then the species name(s) must be entered for the cgmlstfinder, mlst, and pointfinder databases. The database directories for the respective programs can be checked to determine which program name to use.
+Then the species name(s) must be entered for the cgmlstfinder, mlst, and pointfinder databases. The database directories for the respective programs can be checked to determine what name to use.
 
 (Note: Multiple files may be analyzed at the same time, but all the files must be of the same species)
 ```
