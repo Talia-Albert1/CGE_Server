@@ -32,8 +32,8 @@ cgmlst_db = '/path/to/program/CGE_server/cgmlstfinder/cgmlstfinder_db'
 Place the script in a directory (path/to/dir/cge_server.py) create a subdirectory called "input" (/path/to/dir/input/).
 Place the files to be analyzed inside the "input" subdirectory (/path/to/dir/input/file1_r1.fastq.gz etc.)
 <br />
-<img src="https://user-images.githubusercontent.com/96196923/146848038-7d549c37-1b27-4917-a2ea-fcc51e3556ce.png" width="450">
-<img src="https://user-images.githubusercontent.com/96196923/146848056-1bdb6ea6-fd3a-4544-b037-bf4dfe16255e.png" width="450">
+<img src="https://user-images.githubusercontent.com/96196923/146848038-7d549c37-1b27-4917-a2ea-fcc51e3556ce.png" width="475">
+<img src="https://user-images.githubusercontent.com/96196923/146848056-1bdb6ea6-fd3a-4544-b037-bf4dfe16255e.png" width="475">
 
 ## How to Use
 Open the terminal and navigate to the directory with cge_server.py.
