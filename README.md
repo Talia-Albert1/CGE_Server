@@ -81,5 +81,7 @@ Select programs here:n
 The following programs will analyze the data:
 VirulenceFinder, ResFinder
 ```
-After the programs are done being executed, the outputs will be put into an output subdirectory (/path/to/dir/output/programname/filename/results)
+After the programs are done being executed, the outputs will be put into an "output" subdirectory (/path/to/dir/output/programname/filename/results).
+The files analyzed will be moved into an "archive" subdirectory (/path/to/dir/archive/).
 
+<img src="https://user-images.githubusercontent.com/96196923/147994213-8e4ab893-f270-497e-bcbb-f49fa71d0044.png" width = 225)
