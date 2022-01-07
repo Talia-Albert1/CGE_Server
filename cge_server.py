@@ -24,13 +24,19 @@ cgmlst_db = '/home/kyle/Documents/kyle_work/CGE_server/cgmlstfinder/cgmlstfinder
 
 """
 Get files/subdirectories in current working directory. Additionally create the
-output folder if it does not already exist.
+output folder if it does not already exist. Create results subdirectory within
+output.
 """
 currentdir = os.getcwd() + '/'
 currentdirfiles = os.listdir(currentdir)
 outputfoldercheck = os.path.isdir(currentdir + '/output')
 if outputfoldercheck is False:
-    os.mkdir(currentdir +  '/output/')
+    os.mkdir(currentdir +  'output/')
+
+resultsdir = currentdir + 'output' + '/results/'
+resultsfoldercheck = os.path.isdir(resultsdir)
+if resultsfoldercheck is False:
+    os.mkdir(resultsdir)
 inputfilesdir = currentdir + 'input/'
 
 
@@ -167,13 +173,17 @@ relativeoutputdircheck = os.path.isdir(relativeoutputdir)
 if relativeoutputdircheck is False:
     os.mkdir(relativeoutputdir)
 
+#Choose Which character separates the values between species name, program name, result file name
+sep = '-'
+
 
 def tempoutmove(finaloutputdir):
     tempoutputs = os.listdir(relativeoutputdir)
     for file in tempoutputs:
         shutil.move(os.path.join(relativeoutputdir, file), finaloutputdir)
 
-def programcommand(progname, commandline):
+
+def programcommand(progname, commandline, twofileindicator, file1name, file1rename, file2name, file2rename):
     finaloutputdir = currentdir + 'output/' + progname + '/' + files[i].name
     print('Working on:')
     print(files[i].r1dir)
@@ -181,6 +191,11 @@ def programcommand(progname, commandline):
     os.mkdir(finaloutputdir)
     os.system(commandline)
     tempoutmove(finaloutputdir)
+
+    shutil.copy(os.path.join(currentdir + 'output/' + progname + '/' + files[i].name, file1name), os.path.join(resultsdir, file1rename))
+    if twofileindicator == True:
+        shutil.copy(os.path.join(currentdir + 'output/' + progname + '/' + files[i].name, file2name), os.path.join(resultsdir + file2rename))
+
 
 def makedir(progname):
     os.mkdir(currentdir + 'output/' + progname)
@@ -191,9 +206,8 @@ def makedir(progname):
 if '0' in choice:
     makedir('VirulenceFinder')
     for i in range(len(files)):
-        programcommand('VirulenceFinder', 'sudo docker run --rm -it -v ' + virulencefinder_db +':/database -v ' + inputfilesdir + ':/workdir virulencefinder -o tempout -p /database/ -i ' + files[i].r1 + ' ' + files[i].r2 + ' -x')
+        programcommand('VirulenceFinder', 'sudo docker run --rm -it -v ' + virulencefinder_db +':/database -v ' + inputfilesdir + ':/workdir virulencefinder -o tempout -p /database/ -i ' + files[i].r1 + ' ' + files[i].r2 + ' -x', True, 'results.txt', files[i].name + sep + 'VirulenceFinder' + sep + 'results.txt', 'results_tab.tsv', files[i].name + sep + 'VirulenceFinder' + sep + 'results_tab.tsv')
        
-
 
 #ResFinder
 if '1' in choice:
@@ -202,40 +216,41 @@ if '1' in choice:
         finaloutputdir = currentdir + 'output/ResFinder/' + files[i].name
         os.mkdir(finaloutputdir)
         os.system('python3 ' + resfinder_db + 'run_resfinder.py -o ' + finaloutputdir + ' -s ' + files[i].pfspecies + ' -l 0.6 -t 0.9 --acquired --point -ifq ' + files[i].r1dir + ' ' + files[i].r2dir)
+        shutil.copy(currentdir + 'output/ResFinder/' + files[i].name + '/pheno_table.txt', resultsdir + files[i].name + sep + 'ResFinder' + sep + 'pheno_table.txt')
 
 #MLST
 if '2' in choice:
     makedir('MLST')
     for i in range(len(files)):
-        programcommand('MLST', 'sudo docker run --rm -it -v ' + mlst_db + ':/database -v ' + inputfilesdir + ':/workdir mlst -i ' + files[i].r1 + ' ' + files[i].r2 + ' -o tempout -s ' + files[i].mlstspecies + ' -x')
+        programcommand('MLST', 'sudo docker run --rm -it -v ' + mlst_db + ':/database -v ' + inputfilesdir + ':/workdir mlst -i ' + files[i].r1 + ' ' + files[i].r2 + ' -o tempout -s ' + files[i].mlstspecies + ' -x', True, 'results.txt', files[i].name + sep + 'MLST' + sep + 'results.txt', 'results_tab.tsv', files[i].name + sep + 'MLST' + sep + 'results_tab.tsv')
 
 
 #SerotypeFinder
 if '3' in choice:
     makedir('SerotypeFinder')
     for i in range(len(files)):
-        programcommand('SerotypeFinder', 'sudo docker run --rm -it -v ' + serotypefinder_db + ':/database -v ' + inputfilesdir + ':/workdir serotypefinder -i ' + files[i].r1 + ' ' + files[i].r2 + ' -o tempout')
+        programcommand('SerotypeFinder', 'sudo docker run --rm -it -v ' + serotypefinder_db + ':/database -v ' + inputfilesdir + ':/workdir serotypefinder -i ' + files[i].r1 + ' ' + files[i].r2 + ' -o tempout', True, 'kma_H_type_' + files[i].r1 + '.res', files[i].name + sep + 'SerotypeFinder' + sep + 'kma_H_type.fastq.gz.res', 'kma_O_type_' + files[i].r1 + '.res', files[i].name + sep + 'SerotypeFinder' + sep + 'kma_O_type.fastq.gz.res')
 
 
 #PlasmidFinder
 if '4' in choice:
     makedir('PlasmidFinder')
     for i in range(len(files)):
-        programcommand('PlasmidFinder', 'sudo docker run --rm -it -v ' + plasmidfinder_db + ':/database -v ' + inputfilesdir + ':/workdir plasmidfinder -i ' + files[i].r1 + ' ' + files[i].r2 + ' -o tempout -x')
+        programcommand('PlasmidFinder', 'sudo docker run --rm -it -v ' + plasmidfinder_db + ':/database -v ' + inputfilesdir + ':/workdir plasmidfinder -i ' + files[i].r1 + ' ' + files[i].r2 + ' -o tempout -x', True, 'results.txt', files[i].name + sep + 'PlasmidFinder' + sep + 'results.txt', 'results_tab.tsv', files[i].name + sep + 'PlasmidFinder' + sep + 'results_tab.tsv')
 
 
 #KmerFinder
 if '5' in choice:
     makedir('KmerFinder')
     for i in range(len(files)):
-        programcommand('KmerFinder', 'sudo docker run --rm -it -v ' + kmerfinder_db + ':/database -v ' + inputfilesdir + ':/workdir kmerfinder -i ' + files[i].r1 + ' ' + files[i].r2 + ' -o tempout -db /database/bacteria/bacteria.ATG -tax /database/bacteria/bacteria.tax -x')
+        programcommand('KmerFinder', 'sudo docker run --rm -it -v ' + kmerfinder_db + ':/database -v ' + inputfilesdir + ':/workdir kmerfinder -i ' + files[i].r1 + ' ' + files[i].r2 + ' -o tempout -db /database/bacteria/bacteria.ATG -tax /database/bacteria/bacteria.tax -x', False, 'results.txt', files[i].name + sep + 'KmerFinder' + sep + 'results.txt', '', '')
 
 
 #cgMLSTFinder
 if '6' in choice:
     makedir('cgMLSTFinder')
     for i in range(len(files)):
-        programcommand('cgMLSTFinder', 'sudo docker run --rm -it -v ' + kmerfinder_db + ':/database -v ' + inputfilesdir + ':/workdir cgmlstfinder -t temp_dir ' + files[i].r1 + ' ' + files[i].r2 + ' -o tempout -db /database/ -s ' + files[i].mlstspecies)
+        programcommand('cgMLSTFinder', 'sudo docker run --rm -it -v ' + kmerfinder_db + ':/database -v ' + inputfilesdir + ':/workdir cgmlstfinder -t temp_dir ' + files[i].r1 + ' ' + files[i].r2 + ' -o tempout -db /database/ -s ' + files[i].mlstspecies, False, 'results.txt', files[i].name + sep + 'cgMLSTFinder' + sep + 'results.txt','', '')
 
 
 
