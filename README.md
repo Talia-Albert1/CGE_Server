@@ -93,10 +93,13 @@ The files analyzed will be moved into an "archive" subdirectory (/path/to/dir/ar
 Furthermore, a copy of the relavent output files will be created as a subdirectory (/path/to/dir/output/results/).
 The names of the file will be samplename_programname_filename.file
 The following are the relavent output files from each program.
+
 | Program | file1 | file2 |
----------------------------
+|---------|-------|-------|
 |ResFinder |pheno_table.txt | |	
-|mlstFinder |results.txt |	results.tsv
+
+
+|mlstFinder |results.txt |	results.tsv |
 |plasmidFinder	results.txt,	results.tsv
 |virulenceFinder	results.txt,	results.tsv
 |SerotypeFinder	kma_H_type*.res,	kma_O_type*.res
