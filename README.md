@@ -90,8 +90,8 @@ The files analyzed will be moved into an "archive" subdirectory (/path/to/dir/ar
 <img src=https://user-images.githubusercontent.com/96196923/147994480-c8652e3f-0cd8-461e-bb9a-6099cab9d13c.png width = "475">
 <img src=https://user-images.githubusercontent.com/96196923/147994507-21f6f818-14d5-4420-8eb7-36612cfa5d22.png width = "475">
 
-Furthermore, a copy of the relavent output files will be created as a subdirectory (/path/to/dir/output/results/).
-The names of the file will be samplename_programname_filename.file
+Furthermore, a copy of the relavent output files will be created as a subdirectory titled "results" (/path/to/dir/output/results/).
+The names of the result files will be samplename-programname-filename.file
 The following are the relavent output files from each program.
 
 | Program | file1 | file2 |
