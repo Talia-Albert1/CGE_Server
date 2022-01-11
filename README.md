@@ -97,11 +97,9 @@ The following are the relavent output files from each program.
 | Program | file1 | file2 |
 |---------|-------|-------|
 |ResFinder |pheno_table.txt | |	
-
-
-|mlstFinder |results.txt |	results.tsv |
-|plasmidFinder	results.txt,	results.tsv
-|virulenceFinder	results.txt,	results.tsv
-|SerotypeFinder	kma_H_type*.res,	kma_O_type*.res
-|cgMLST	results.txt	
-kmerfinder	results.txt	
+|mlstFinder |results.txt |results_tab.tsv |
+|plasmidFinder |results.txt |results_tab.tsv|
+|virulenceFinder	|results.txt| results_tab.tsv|
+|SerotypeFinder	|kma_H_type*.res |kma_O_type*.res|
+|cgMLST	|results.txt | |	
+|kmerfinder |results.txt| |	
