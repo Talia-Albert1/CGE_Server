@@ -29,14 +29,15 @@ output.
 """
 currentdir = os.getcwd() + '/'
 currentdirfiles = os.listdir(currentdir)
-outputfoldercheck = os.path.isdir(currentdir + '/output')
-if outputfoldercheck is False:
+
+if os.path.isdir(currentdir + '/output') is False:
     os.mkdir(currentdir +  'output/')
 
 resultsdir = currentdir + 'output' + '/results/'
-resultsfoldercheck = os.path.isdir(resultsdir)
-if resultsfoldercheck is False:
+
+if os.path.isdir(resultsdir) is False:
     os.mkdir(resultsdir)
+    
 inputfilesdir = currentdir + 'input/'
 
 
@@ -47,15 +48,11 @@ or the r1/r2 ending into a list.
 
 Print which files will be analyzed to the user
 """
-fileswithext = os.listdir(inputfilesdir)
-files = []
+inputdirfiles = os.listdir(inputfilesdir)
 
-for i in range(len(fileswithext)):
-    if fileswithext[i].endswith('.fastq.gz') and fileswithext[i][:-12] not in files:
-        files.append(fileswithext[i][:-12])
 
 print('The following files will be analyzed')   
-for file in fileswithext:
+for file in inputdirfiles:
     print(inputfilesdir + file)
 print('')       
 
@@ -66,6 +63,7 @@ The user inputs the pointfinder, mlst, and cgmlst species database names
 """
 pfspeciesinput = input(
     'Input the pointfinder database species name:')
+
 mlstspeciesinput = input(
     'Input the mlst and cgmlstfnder database species name:')
 print('')
@@ -87,16 +85,66 @@ class datafile():
         self.r2dir = r2dir
 
 
-for i in range(len(files)):
-    files[i] = datafile(files[i], '', '', '', '')
-    for j in range(len(fileswithext)):
-        if files[i].name in fileswithext[j]:
-            if 'r1'.casefold() in fileswithext[j].casefold():
-                files[i].r1 = fileswithext[j]
-                files[i].r1dir = inputfilesdir + fileswithext[j]
-            if 'r2'.casefold() in fileswithext[j].casefold():
-                files[i].r2 = fileswithext[j]
-                files[i].r2dir = inputfilesdir + fileswithext[j]
+files = []
+
+#Get the directory of the R1 and R2 files, as well as the "basename" for each file
+for file in inputdirfiles:
+    if 'r1' in file.casefold():
+        tempname = os.path.splitext(file)
+        
+        file_extension = '.fastq'
+        if tempname[1] == '.gz':
+            tempname = os.path.splitext(tempname[0])
+            file_extension = '.fastq.gz'
+            
+        if tempname[1] == '.fastq':
+            tempname = tempname[0]
+        
+        r1index = tempname.casefold().find('r1')
+        r1indexdigit = r1index + 1
+        r1name = tempname
+        r2name = tempname[:r1indexdigit] + '2' + tempname[r1indexdigit + 1:]
+        
+        underscore_index = []
+        if 'R1' in tempname:
+            basename_noR = tempname.replace('R1', '')
+            #Check for double "__" that result from removing R1, and remove a trailing _ if one exists
+            for i in range(len(basename_noR)):
+                if i != len(basename_noR) - 1:
+                    if basename_noR[i] == basename_noR[i + 1] == '_':
+                        underscore_index.append(i + 1)
+                
+                if i == len(basename_noR) - 1:
+                    if basename_noR[i] == '_':
+                        basename_noR = basename_noR[:-1]
+            
+            if underscore_index != []:
+                for i in range(len(underscore_index)):
+                    tempindex = underscore_index[i] - i
+                    basename_noR = basename_noR[:tempindex] + basename_noR[tempindex + 1:]
+
+        elif 'r1' in tempname:
+            basename_noR = tempname.replace('r1', '')
+            
+            for i in range(len(basename_noR)):
+                if i != len(basename_noR) - 1:
+                    if basename_noR[i] == basename_noR[i + 1] == '_':
+                        underscore_index.append(i + 1)
+
+                if i == len(basename_noR) - 1:
+                    if basename_noR[i] == '_':
+                        basename_noR = basename_noR[:-1]
+            
+            if underscore_index != []:
+                for i in range(len(underscore_index)):
+                    tempindex = underscore_index[i] - i
+                    basename_noR = basename_noR[:tempindex] + basename_noR[tempindex + 1:]
+        
+
+        
+        files.append(datafile(basename_noR, r1name, r2name, 
+                              inputfilesdir + r1name + file_extension,
+                              inputfilesdir + r2name + file_extension))
 
 
 inputoptions = []
@@ -124,7 +172,7 @@ Ensure the first pick is not "N" or "n", and is a valid choice.
 """
 choicealpha = input('Select programs here:')
 while choice == []:
-    if choicealpha.casefold() == 'N'.casefold() or choicealpha not in inputoptions:
+    if choicealpha.casefold() == 'n' or choicealpha not in inputoptions:
         print('')
         choicealpha = input('Select programs here:')
         
@@ -134,7 +182,7 @@ while choice == []:
         if programs[int(choicealpha)] != 'All':
                     print(programs[int(choicealpha)] + ' will analyze the data')
                     
-#Individually choose more programs, or have all 3 be choosen.
+#Individually choose more programs, or have all be choosen.
 while choice != []:
     if choicealpha == allindex:
         choice == [allindex]
@@ -169,8 +217,7 @@ if choice == [allindex]:
 #Create the relative output folder, since CGE server programs dont play well with absolute paths
 print('')
 relativeoutputdir = inputfilesdir +  'tempout/'
-relativeoutputdircheck = os.path.isdir(relativeoutputdir)
-if relativeoutputdircheck is False:
+if os.path.isdir(relativeoutputdir) is False:
     os.mkdir(relativeoutputdir)
 
 #Choose Which character separates the values between species name, program name, result file name
@@ -206,7 +253,7 @@ def makedir(progname):
 if '0' in choice:
     makedir('VirulenceFinder')
     for i in range(len(files)):
-        programcommand('VirulenceFinder', 'sudo docker run --rm -it -v ' + virulencefinder_db +':/database -v ' + inputfilesdir + ':/workdir virulencefinder -o tempout -p /database/ -i ' + files[i].r1 + ' ' + files[i].r2 + ' -x', True, 'results.txt', files[i].name + sep + 'VirulenceFinder' + sep + 'results.txt', 'results_tab.tsv', files[i].name + sep + 'VirulenceFinder' + sep + 'results_tab.tsv')
+        programcommand('VirulenceFinder', 'sudo docker run --rm -it -v ' + virulencefinder_db +' :/database -v ' + inputfilesdir + ':/workdir virulencefinder -o tempout -p /database/ -i ' + files[i].r1 + file_extension + ' ' + files[i].r2 + file_extension + ' -x', True, 'results.txt', files[i].name + sep + 'VirulenceFinder' + sep + 'results.txt', 'results_tab.tsv', files[i].name + sep + 'VirulenceFinder' + sep + 'results_tab.tsv')
        
 
 #ResFinder
